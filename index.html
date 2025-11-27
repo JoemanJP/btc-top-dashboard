@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTC Top Dashboard</title>
+  <style>
+    :root {
+      --bg: #0c0f17;
+      --panel: rgba(255, 255, 255, 0.04);
+      --panel-border: rgba(255, 255, 255, 0.08);
+      --text-main: #e8ecf5;
+      --text-sub: #a4acc4;
+      --accent: #5ef0a1;
+      --warn: #f7c948;
+      --danger: #ef5f5f;
+      --gradient: linear-gradient(90deg, #3ecf8e, #f6d365, #f07171);
+      --card-radius: 14px;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --font-main: 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at 20% 20%, rgba(63, 94, 251, 0.12), transparent 30%),
+                  radial-gradient(circle at 80% 0%, rgba(255, 94, 94, 0.14), transparent 35%),
+                  var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .gradient-bar {
+      height: 10px;
+      background: var(--gradient);
+      width: 100%;
+    }
+
+    header {
+      padding: 28px 20px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 34px);
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: var(--text-sub);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      padding: 0 20px 20px;
+    }
+
+    .summary-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--card-radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-title {
+      margin: 0 0 6px;
+      font-size: 14px;
+      color: var(--text-sub);
+    }
+
+    .summary-value {
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .summary-note {
+      margin: 8px 0 0;
+      color: var(--text-sub);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    main {
+      padding: 0 20px 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--card-radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .category {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--panel-border);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--text-sub);
+      white-space: nowrap;
+    }
+
+    .indicator-name {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-sub);
+    }
+
+    .metric strong {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+    }
+
+    .status span {
+      font-size: 18px;
+    }
+
+    .progress-container {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      border-radius: 10px;
+      transition: width 0.4s ease;
+    }
+
+    .strength {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-sub);
+      font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      header { padding-top: 22px; }
+      .card { padding: 14px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bar"></div>
+  <header>
+    <h1>BTC Top Dashboard</h1>
+    <p class="subtitle">牛市逃頂信號清單（v1） · 10 項指標 · 綠 → 黃 → 紅 逐步接近頂部風險</p>
+  </header>
+
+  <section class="summary" id="summary">
+    <div class="summary-card">
+      <p class="summary-title">平均進度（頂部風險）</p>
+      <div class="summary-value" id="avg-progress">--</div>
+      <p class="summary-note">綠色代表安全、紅色代表接近頂部，來自各指標進度均值。</p>
+    </div>
+    <div class="summary-card">
+      <p class="summary-title">建議持倉 / 減倉</p>
+      <div class="summary-value" id="portfolio-hint">--</div>
+      <p class="summary-note">以進度為風險比例：進度越高，建議越多部位鎖定或減倉。</p>
+    </div>
+    <div class="summary-card">
+      <p class="summary-title">最後更新</p>
+      <div class="summary-value" id="last-updated">--</div>
+      <p class="summary-note">每次 `update_data.py` 跑完即更新檔案時間。</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="grid" id="cards"></div>
+  </main>
+
+  <footer>
+    Top Dashboard v1 · 資料來源：FRED / CoinGecko / Alternative.me / Yahoo Finance
+  </footer>
+
+  <script>
+    async function fetchData() {
+      const res = await fetch('data.json', { cache: 'no-cache' });
+      if (!res.ok) {
+        throw new Error('無法取得 data.json');
+      }
+      return res.json();
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function computeProgress(indicator) {
+      const current = Number(indicator.current);
+      const ref = Number(indicator.ref);
+      if (!Number.isFinite(current) || !Number.isFinite(ref)) return 0;
+
+      if (indicator.direction === 'higher_worse') {
+        if (ref === 0) return clamp(current * 100, 0, 100);
+        const ratio = current / ref;
+        if (ratio <= 0) return 0;
+        return clamp(ratio * 100, 0, 100);
+      }
+
+      // lower_worse: 當前低於 ref 時才累積進度
+      if (ref === 0) return current < 0 ? 100 : 0;
+      if (current >= ref) return 0;
+      const diffRatio = (ref - current) / Math.abs(ref);
+      return clamp(diffRatio * 100, 0, 100);
+    }
+
+    function isTopHit(indicator) {
+      if (indicator.direction === 'higher_worse') {
+        return indicator.current >= indicator.ref;
+      }
+      return indicator.current <= indicator.ref;
+    }
+
+    function progressColor(pct) {
+      const capped = clamp(pct, 0, 100);
+      const hue = 120 - (capped * 1.2); // 120 -> 0
+      return `hsl(${hue}, 75%, 55%)`;
+    }
+
+    function renderSummary(data) {
+      if (!Array.isArray(data) || data.length === 0) return;
+      const progresses = data.map(computeProgress);
+      const avg = progresses.reduce((a, b) => a + b, 0) / progresses.length;
+      const hold = Math.round(clamp(100 - avg, 0, 100));
+      const trim = Math.round(clamp(avg, 0, 100));
+
+      document.getElementById('avg-progress').textContent = `${avg.toFixed(1)}%`;
+      document.getElementById('portfolio-hint').textContent = `持倉 ${hold}% / 減倉 ${trim}%`;
+      document.getElementById('last-updated').textContent = new Date(document.lastModified).toLocaleString();
+    }
+
+    function renderCards(data) {
+      const container = document.getElementById('cards');
+      container.innerHTML = '';
+
+      data.forEach((indicator) => {
+        const pct = computeProgress(indicator);
+        const hit = isTopHit(indicator);
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+          <div class="card-header">
+            <h3 class="indicator-name">${indicator.name}</h3>
+            <span class="category">${indicator.category}</span>
+          </div>
+          <div class="metrics">
+            <div class="metric"><strong>當前</strong><br>${indicator.current} ${indicator.unit || ''}</div>
+            <div class="metric"><strong>參考</strong><br>${indicator.ref} ${indicator.unit || ''}</div>
+            <div class="metric status" style="color: ${hit ? 'var(--danger)' : 'var(--accent)'}">
+              <span>${hit ? '✔' : '✖'}</span>頂部條件
+            </div>
+            <div class="metric"><strong>strength</strong><br>${(indicator.strength * 100).toFixed(0)}%</div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: ${pct}%; background: ${progressColor(pct)}"></div>
+          </div>
+          <div class="strength">方向：${indicator.direction === 'higher_worse' ? '越高越危險' : '越低越危險'} · 進度 ${pct.toFixed(1)}%</div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    async function init() {
+      try {
+        const data = await fetchData();
+        renderSummary(data);
+        renderCards(data);
+      } catch (err) {
+        document.getElementById('cards').innerHTML = `<div class="card">${err.message}</div>`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

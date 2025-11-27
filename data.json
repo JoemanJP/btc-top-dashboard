@@ -1,0 +1,92 @@
+[
+  {
+    "name": "全球流動性模型（RRP + TGA + Fed BS）",
+    "category": "流動性",
+    "current": 0,
+    "ref": -1.0,
+    "direction": "lower_worse",
+    "unit": "",
+    "strength": 0.7
+  },
+  {
+    "name": "USDT & USDC 90 日供應成長率",
+    "category": "穩定幣",
+    "current": 0,
+    "ref": 15,
+    "direction": "higher_worse",
+    "unit": "%",
+    "strength": 0.6
+  },
+  {
+    "name": "恐慌貪婪指數（F&G）",
+    "category": "情緒",
+    "current": 0,
+    "ref": 75,
+    "direction": "higher_worse",
+    "unit": "",
+    "strength": 0.5
+  },
+  {
+    "name": "全球風險指數（DXY + VIX Z-score）",
+    "category": "風險",
+    "current": 0,
+    "ref": 1.0,
+    "direction": "higher_worse",
+    "unit": "",
+    "strength": 0.5
+  },
+  {
+    "name": "ETF 連續淨流出天數",
+    "category": "資金流",
+    "current": 0,
+    "ref": 5,
+    "direction": "higher_worse",
+    "unit": "天",
+    "strength": 0.6
+  },
+  {
+    "name": "期貨未平倉量百分位（OI Percentile）",
+    "category": "槓桿",
+    "current": 0,
+    "ref": 0.8,
+    "direction": "higher_worse",
+    "unit": "",
+    "strength": 0.6
+  },
+  {
+    "name": "Funding Rate（7 日均值）",
+    "category": "槓桿",
+    "current": 0,
+    "ref": 0.015,
+    "direction": "higher_worse",
+    "unit": "%",
+    "strength": 0.6
+  },
+  {
+    "name": "現貨交易所 7 日淨流入 / 供應",
+    "category": "供應",
+    "current": 0,
+    "ref": 0.5,
+    "direction": "higher_worse",
+    "unit": "%",
+    "strength": 0.5
+  },
+  {
+    "name": "鯨魚 30 日淨賣出 / 供應",
+    "category": "鯨魚",
+    "current": 0,
+    "ref": 0.3,
+    "direction": "higher_worse",
+    "unit": "%",
+    "strength": 0.5
+  },
+  {
+    "name": "礦工位置指數（MPI）",
+    "category": "礦工",
+    "current": 0,
+    "ref": 2.0,
+    "direction": "higher_worse",
+    "unit": "",
+    "strength": 0.7
+  }
+]
