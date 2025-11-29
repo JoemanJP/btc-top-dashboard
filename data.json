@@ -1,92 +1,113 @@
 [
   {
-    "name": "全球流動性模型（RRP + TGA + Fed BS）",
+    "name": "RRP 逆回購餘額 YoY",
     "category": "流動性",
-    "current": 0,
-    "ref": -1.0,
-    "direction": "lower_worse",
-    "unit": "",
-    "strength": 0.7
+    "current": -95.55,
+    "ref": 0,
+    "direction": "higher_worse",
+    "unit": "%",
+    "strength": 0.8,
+    "note": "RRP YoY > 0：更多資金停在貨幣市場，代表流動性被抽走，對風險資產偏空。",
+    "meta": {
+      "source": "FRED RRPONTSYD",
+      "last_date": "2025-11-28"
+    },
+    "detail": "RRP YoY = -95.55%：數值越高代表更多資金停在貨幣市場，流動性被抽走，對風險資產偏空。"
   },
   {
-    "name": "USDT & USDC 90 日供應成長率",
+    "name": "TGA 財政部帳戶 YoY",
+    "category": "流動性",
+    "current": 16.53,
+    "ref": 0,
+    "direction": "higher_worse",
+    "unit": "%",
+    "strength": 0.7,
+    "note": "TGA 上升代表財政部把錢收回國庫、從市場抽走美元流動性。",
+    "meta": {
+      "source": "FRED WTREGEN",
+      "last_date": "2025-11-26"
+    },
+    "detail": "TGA YoY = +16.53%：TGA 上升代表財政部把錢收回國庫，從市場抽走美元流動性；對風險資產偏空。"
+  },
+  {
+    "name": "Fed 資產負債表 YoY",
+    "category": "流動性",
+    "current": -5.11,
+    "ref": -5,
+    "direction": "lower_worse",
+    "unit": "%",
+    "strength": 0.8,
+    "note": "Fed BS YoY 越負代表 QT 越強，長期對 BTC / 風險資產偏空。",
+    "meta": {
+      "source": "FRED WALCL",
+      "last_date": "2025-11-26"
+    },
+    "detail": "Fed 資產負險表 YoY = -5.11%：YoY 越負代表 QT 越強，長期對 BTC / 風險資產偏空。"
+  },
+  {
+    "name": "Net Liquidity 綜合指標 YoY",
+    "category": "流動性",
+    "current": -7.84,
+    "ref": -10,
+    "direction": "lower_worse",
+    "unit": "%",
+    "strength": 1.0,
+    "note": "Net = Fed BS - RRP - TGA，綜合衡量全球美元流動性。YoY 越負代表系統性流動性在收縮。",
+    "meta": {
+      "source": "FRED WALCL/RRPONTSYD/WTREGEN",
+      "last_date": "2025-11-28",
+      "impulse_90d_pct": -6.06,
+      "beta_vs_btc": null
+    },
+    "detail": "Net = BS - RRP - TGA · YoY = -7.84%；-6.06%（近 90 日加速度）；Beta(BTC) ≈ N/A。YoY 越負代表系統性流動性在收縮。"
+  },
+  {
+    "name": "穩定幣供應 90 日成長（USDT+USDC）",
     "category": "穩定幣",
-    "current": 0,
+    "current": 8.43,
     "ref": 15,
     "direction": "higher_worse",
     "unit": "%",
-    "strength": 0.6
+    "strength": 0.7,
+    "note": "USDT+USDC 過去 90 日供應成長率。成長過快通常對應牛市中後段。",
+    "meta": {
+      "source": "CoinGecko market_chart",
+      "coins": [
+        "tether",
+        "usd-coin"
+      ],
+      "sample_growth": [
+        9.91,
+        6.96
+      ]
+    },
+    "detail": "USDT+USDC 90 日供應成長 ≈ +8.43%：成長過快通常對應牛市中後段，代表場內槓桿與風險偏好升溫。"
   },
   {
-    "name": "恐慌貪婪指數（F&G）",
-    "category": "情緒",
-    "current": 0,
-    "ref": 75,
-    "direction": "higher_worse",
-    "unit": "",
-    "strength": 0.5
-  },
-  {
-    "name": "全球風險指數（DXY + VIX Z-score）",
-    "category": "風險",
-    "current": 0,
-    "ref": 1.0,
-    "direction": "higher_worse",
-    "unit": "",
-    "strength": 0.5
-  },
-  {
-    "name": "ETF 連續淨流出天數",
-    "category": "資金流",
-    "current": 0,
-    "ref": 5,
-    "direction": "higher_worse",
-    "unit": "天",
-    "strength": 0.6
-  },
-  {
-    "name": "期貨未平倉量百分位（OI Percentile）",
-    "category": "槓桿",
-    "current": 0,
-    "ref": 0.8,
-    "direction": "higher_worse",
-    "unit": "",
-    "strength": 0.6
-  },
-  {
-    "name": "Funding Rate（7 日均值）",
-    "category": "槓桿",
-    "current": 0,
-    "ref": 0.015,
-    "direction": "higher_worse",
+    "name": "USDT.D 穩定幣市佔率",
+    "category": "穩定幣",
+    "current": 5.793,
+    "ref": 4,
+    "direction": "lower_worse",
     "unit": "%",
-    "strength": 0.6
+    "strength": 0.9,
+    "tooltip": "觀察區間約 4%（接近頂部）– 6%（接近底部）。",
+    "meta": {
+      "band_floor": 4.0,
+      "band_ceiling": 6.0,
+      "source": "CoinGecko /global market_cap_percentage.usdt"
+    },
+    "note": "USDT.D 越低代表場內風險資產佔比越高。約 4% 是籌碼高度風險偏好區，約 6% 則代表市場保守、接近底部。",
+    "detail": "USDT.D ≈ 5.793%：約 4.0% 左右代表市場極度風險偏好、穩定幣佔比偏低（接近牛市頂部）；約 6.0% 則代表穩定幣佔比偏高，市場保守、接近底部區間。"
   },
   {
-    "name": "現貨交易所 7 日淨流入 / 供應",
-    "category": "供應",
+    "name": "比特幣現貨 ETF 5 日淨流量（美元）",
+    "category": "ETF",
     "current": 0,
-    "ref": 0.5,
-    "direction": "higher_worse",
-    "unit": "%",
-    "strength": 0.5
-  },
-  {
-    "name": "鯨魚 30 日淨賣出 / 供應",
-    "category": "鯨魚",
-    "current": 0,
-    "ref": 0.3,
-    "direction": "higher_worse",
-    "unit": "%",
-    "strength": 0.5
-  },
-  {
-    "name": "礦工位置指數（MPI）",
-    "category": "礦工",
-    "current": 0,
-    "ref": 2.0,
-    "direction": "higher_worse",
-    "unit": "",
-    "strength": 0.7
+    "ref": -500000000,
+    "direction": "lower_worse",
+    "unit": "USD",
+    "strength": 0.9,
+    "note": "最近 5 日比特幣現貨 ETF 累計淨流量。持續大額淨流出是風險升溫訊號。"
   }
 ]
