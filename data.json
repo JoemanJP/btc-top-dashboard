@@ -64,7 +64,7 @@
   {
     "name": "穩定幣供應 90 日成長（USDT+USDC）",
     "category": "穩定幣",
-    "current": 8.39,
+    "current": 8.4,
     "ref": 15,
     "direction": "higher_worse",
     "unit": "%",
@@ -77,11 +77,11 @@
         "usd-coin"
       ],
       "sample_growth": [
-        9.88,
-        6.89
+        9.89,
+        6.9
       ]
     },
-    "detail": "USDT+USDC 90 日供應成長 ≈ +8.39%：成長過快通常對應牛市中後段，代表場內槓桿與風險偏好升溫。"
+    "detail": "USDT+USDC 90 日供應成長 ≈ +8.40%：成長過快通常對應牛市中後段，代表場內槓桿與風險偏好升溫。"
   },
   {
     "name": "USDT.D 穩定幣市佔率",
