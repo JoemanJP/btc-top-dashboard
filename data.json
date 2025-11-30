@@ -64,7 +64,7 @@
   {
     "name": "穩定幣供應 90 日成長（USDT+USDC）",
     "category": "穩定幣",
-    "current": 8.41,
+    "current": 8.46,
     "ref": 15,
     "direction": "higher_worse",
     "unit": "%",
@@ -77,16 +77,16 @@
         "usd-coin"
       ],
       "sample_growth": [
-        9.91,
-        6.91
+        9.88,
+        7.03
       ]
     },
-    "detail": "USDT+USDC 90 日供應成長 ≈ +8.41%：成長過快通常對應牛市中後段，代表場內槓桿與風險偏好升溫。"
+    "detail": "USDT+USDC 90 日供應成長 ≈ +8.46%：成長過快通常對應牛市中後段，代表場內槓桿與風險偏好升溫。"
   },
   {
     "name": "USDT.D 穩定幣市佔率",
     "category": "穩定幣",
-    "current": 5.824,
+    "current": 5.803,
     "ref": 4,
     "direction": "lower_worse",
     "unit": "%",
@@ -98,7 +98,7 @@
       "source": "CoinGecko /global market_cap_percentage.usdt"
     },
     "note": "USDT.D 越低代表場內風險資產佔比越高。約 4% 是籌碼高度風險偏好區，約 6% 則代表市場保守、接近底部。",
-    "detail": "USDT.D ≈ 5.824%：約 4.0% 左右代表市場極度風險偏好、穩定幣佔比偏低（接近牛市頂部）；約 6.0% 則代表穩定幣佔比偏高，市場保守、接近底部區間。"
+    "detail": "USDT.D ≈ 5.803%：約 4.0% 左右代表市場極度風險偏好、穩定幣佔比偏低（接近牛市頂部）；約 6.0% 則代表穩定幣佔比偏高，市場保守、接近底部區間。"
   },
   {
     "name": "比特幣現貨 ETF 5 日淨流量（美元）",
