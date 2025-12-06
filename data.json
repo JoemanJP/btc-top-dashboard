@@ -2,7 +2,7 @@
   {
     "name": "RRP 逆回購餘額 YoY",
     "category": "流動性",
-    "current": -98.63,
+    "current": -98.87,
     "ref": 0,
     "direction": "higher_worse",
     "unit": "%",
@@ -10,9 +10,9 @@
     "note": "RRP YoY > 0：更多資金停在貨幣市場，代表流動性被抽走，對風險資產偏空。",
     "meta": {
       "source": "FRED RRPONTSYD",
-      "last_date": "2025-12-04"
+      "last_date": "2025-12-05"
     },
-    "detail": "RRP YoY = -98.63%：數值越高代表更多資金停在貨幣市場，流動性被抽走，對風險資產偏空。"
+    "detail": "RRP YoY = -98.87%：數值越高代表更多資金停在貨幣市場，流動性被抽走，對風險資產偏空。"
   },
   {
     "name": "TGA 財政部帳戶 YoY",
@@ -55,7 +55,7 @@
     "note": "Net = Fed BS - RRP - TGA，綜合衡量全球美元流動性。YoY 越負代表系統性流動性在收縮。",
     "meta": {
       "source": "FRED WALCL/RRPONTSYD/WTREGEN",
-      "last_date": "2025-12-04",
+      "last_date": "2025-12-05",
       "impulse_90d_pct": -6.76,
       "beta_vs_btc": null
     },
@@ -64,7 +64,7 @@
   {
     "name": "穩定幣供應 90 日成長（USDT+USDC）",
     "category": "穩定幣",
-    "current": 8.74,
+    "current": 8.85,
     "ref": 15,
     "direction": "higher_worse",
     "unit": "%",
@@ -77,16 +77,16 @@
         "usd-coin"
       ],
       "sample_growth": [
-        9.84,
-        7.64
+        9.95,
+        7.75
       ]
     },
-    "detail": "USDT+USDC 90 日供應成長 ≈ +8.74%：成長過快通常對應牛市中後段，代表場內槓桿與風險偏好升溫。"
+    "detail": "USDT+USDC 90 日供應成長 ≈ +8.85%：成長過快通常對應牛市中後段，代表場內槓桿與風險偏好升溫。"
   },
   {
     "name": "USDT.D 穩定幣市佔率",
     "category": "穩定幣",
-    "current": 5.778,
+    "current": 5.944,
     "ref": 4,
     "direction": "lower_worse",
     "unit": "%",
@@ -98,7 +98,7 @@
       "source": "CoinGecko /global market_cap_percentage.usdt"
     },
     "note": "USDT.D 越低代表場內風險資產佔比越高。約 4% 是籌碼高度風險偏好區，約 6% 則代表市場保守、接近底部。",
-    "detail": "USDT.D ≈ 5.778%：約 4.0% 左右代表市場極度風險偏好、穩定幣佔比偏低（接近牛市頂部）；約 6.0% 則代表穩定幣佔比偏高，市場保守、接近底部區間。"
+    "detail": "USDT.D ≈ 5.944%：約 4.0% 左右代表市場極度風險偏好、穩定幣佔比偏低（接近牛市頂部）；約 6.0% 則代表穩定幣佔比偏高，市場保守、接近底部區間。"
   },
   {
     "name": "比特幣現貨 ETF 5 日淨流量（美元）",
